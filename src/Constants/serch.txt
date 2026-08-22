@@ -1,0 +1,33 @@
+import React from 'react'
+
+const Search = () => {
+  const [data, setData] = useState([
+  {
+    id: 1,
+    name: "apple",
+    price: 200,
+  },
+]);
+const [name, setName] = useState("");
+const [price, setPrice] = useState(0);
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  setData((prevExpanse) => [
+    ...prevExpanse,
+    { id: Date.now(), name: name, price: price },
+  ]);
+
+  setName("");
+  setPrice(0);
+};
+//   import React, { useState } from "react";
+// import { FaEdit } from "react-icons/fa";
+// import { MdDelete } from "react-icons/md"; 
+  return (
+  <>
+  </>
+  )
+}
+
+export default Search

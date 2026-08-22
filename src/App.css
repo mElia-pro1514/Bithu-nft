@@ -1,0 +1,22 @@
+.no {
+    display: none;
+}
+
+.blo {
+    display: block;
+}
+
+.time span {
+    font-size: 14px;
+}
+.time b{
+    color:#6d7178;
+}
+
+
+
+.bg{
+    background-image: url(./assets/img/bg.png);
+    background-size: cover;
+    background-position: center;    
+}

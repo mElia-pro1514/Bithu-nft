@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+.btn_sky{
+    @apply   rounded-full sm:rounded-none border-[1px]
+     hover:text-black font-semibold hover:bg-[#4ddb9ed0] border-[#ffffff27] px-3
+       bg-transparent 
+}
+.btn_gray{
+    @apply rounded-full sm:rounded-none border-[1px] 
+    border-[#ffffff27] hover:text-[#4ddb9e] font-semibold hover:border-[#4ddb9e]
+     px-3 
+}
+.flex_c{
+    @apply flex items-center
+}
+.flex_b{
+    @apply flex items-center justify-between
+}
+.widh{
+    @apply w-[80%] md:w-[90%] lg:w-[75%]  mx-auto
+}
+.head{
+    @apply text-[18px] hover:text-[#4ddb9e] sm:text-[1.5rem] lg:text-[1.5rem] px-1 font-bold 
+}
+.btn_links_footer{
+    @apply text-white bg-[#ffffff18] hover:bg-[#ffffff23] py-3 px-3 hover:scale-110
+}
+.bgblur{
+    filter:blur(100%)
+}
+@media screen and (min-width:1440px) {
+    .with{
+        width: 1440px;
+        font-size: 18px;
+
+    }
+}
+@tailwind utilities;
