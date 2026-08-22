@@ -42,7 +42,7 @@ const Navbar = ({ back }) => {
     {
       id: 0,
       linkto: '/',
-      tag: 'Bithu'
+      tag: ''
     }
   ]
   const [toggle, settoggle] = useState(true);

@@ -131,7 +131,7 @@ const Contect = ({className, icon, text, onclick, type}) => {
                                     <div className=' flex_C'>
                                         <span className='flex 
                                          items-center  text-[1rem] hover:text-[#4ddb9e] sm:text-[1.5rem] lg:text-[2rem] px-1 font-bold '>
-                                            <img src={logo} className='h-[20px] sm:h-fit' alt="" />Bithu</span>
+                                            <img src={logo} className='h-[20px] sm:h-fit' alt="" /></span>
                                     </div>
 
                                 </div>
