@@ -4,7 +4,7 @@ const Btn = ({className, icon, text, onclick, type}) => {
    <>
    <button className={className} onClick={onclick} type={type}>
     <span className=' py-[12px]  sm:pr-2'>{icon}</span>
-    <span className=' hidden sm:block'>{text}</span>
+    <span className=' hidden font-normal sm:block'>{text}</span>
 
    </button>
    

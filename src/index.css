@@ -1,5 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap');
+
 @tailwind base;
 @tailwind components;
+
+@layer base {
+    html {
+        overflow-x: hidden;
+    }
+
+    body {
+        min-width: 320px;
+        overflow-x: hidden;
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    img,
+    svg {
+        max-width: 100%;
+    }
+}
 .btn_sky{
     @apply   rounded-full sm:rounded-none border-[1px]
      hover:text-black font-semibold hover:bg-[#4ddb9ed0] border-[#ffffff27] px-3
@@ -17,7 +41,7 @@
     @apply flex items-center justify-between
 }
 .widh{
-    @apply w-[80%] md:w-[90%] lg:w-[75%]  mx-auto
+    @apply w-[92%] sm:w-[90%] md:w-[90%] lg:w-[75%] mx-auto
 }
 .head{
     @apply text-[18px] hover:text-[#4ddb9e] sm:text-[1.5rem] lg:text-[1.5rem] px-1 font-bold 
@@ -36,3 +60,59 @@
     }
 }
 @tailwind utilities;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+strong,
+.font-bold,
+.font-semibold {
+    font-family: 'Bakbak One', sans-serif;
+}
+
+.about-description,
+.about-description p {
+    font-family: sans-serif;
+}
+
+@keyframes rotateMintBadge {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.mint-badge-text {
+    animation: rotateMintBadge 14s linear infinite;
+    transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mint-badge-text {
+        animation: none;
+    }
+}
+
+.footbg{
+    background-image: url('../src/assets/img/footer.png');
+    background-size: cover;
+    background-position: center;
+}
+.herobg{
+    background-image: url('../src/assets/img/herobg.png');
+    background-size: fill   ;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(10px);
+}
+.bgf{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    min-height: 100px;
+    background: rgba(11, 10, 50, 0.167);
+    backdrop-filter: blur(20px);
+}

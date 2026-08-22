@@ -102,8 +102,8 @@ const Hero = () => {
             <div>
               <A_Navbar />
             </div>
-            <div className="flex_b flex-col-reverse md:flex-row-reverse py-3 pt-6 widh mt-2  md:mt-16">
-              <div className=' flex flex-col gap-3 sm:gap-[12px] md:gap-4 mt-4 md:mt-0 w-[95%] sm:w-[75%] md:w-[40%]'>
+            <div className="flex_b flex-col-reverse gap-8 py-6 pt-8 widh md:flex-row-reverse md:gap-10 md:pt-16">
+              <div className='flex w-full flex-col gap-3 sm:gap-[12px] md:mt-0 md:w-[40%] md:gap-4'>
                 <div>
                   <p className=' font-bold'> WHITESLT : <span className=' text-[#d54468]'>SOLDOUT</span></p>
                 </div>
@@ -119,7 +119,7 @@ const Hero = () => {
                 </div>
 
                 <div className='flex w-full'>
-                  <div className=' flex_c gap-2 sm:gap-4 md:gap-7 w-full'>
+                  <div className='flex w-full flex-wrap items-center gap-3 sm:gap-4 md:gap-7'>
 
                     <div className='flex  justify-center '>
                       <div className=' py-3 md:py-2 px-3 cursor-pointer bg-gray-800'><i onClick={reduce_num}>-</i></div>
@@ -143,11 +143,11 @@ const Hero = () => {
                   </div>
                 </div>
               </div>
-              <div className=' w-[95%] sm:w-[85%] md:w-[50%]'>
+              <div className='w-full md:w-[50%]'>
                 <div className='text-[1.5rem] font-bold pb-4 md:hidden text-white'>
                   <h2>MINT IS LIVE NOW ! </h2>
                 </div>
-                <div className=' bg-[#ffffff0e] py-4 px-2 flex items-center  justify-center w-full'>
+                <div className='flex w-full items-center justify-center bg-[#ffffff0e] px-2 py-4'>
                   <img src={img_hero} alt="" className=' sm:w-[90%] shadow-gray-500 shadow-2xl
                  md:w-[100%] w-[85%]' />
                 </div>

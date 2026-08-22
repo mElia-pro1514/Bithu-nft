@@ -12,6 +12,8 @@ import contect from '../assets/img/footer_img.png'
 import { Link } from 'react-router-dom'
 import Btn from '../Components/Btn'
 import logo from '../assets/img/logo.png'
+import { FaRegCopyright } from "react-icons/fa6";
+
 
 
 const Contect = ({className, icon, text, onclick, type}) => {
@@ -61,8 +63,8 @@ const Contect = ({className, icon, text, onclick, type}) => {
     ]
     return (
         <>
-            <main id='contect' className='w-full'>
-                <section>
+            <main id='contect' className='w-full footbg'>
+                <section className='w-full   bg-gray-800/50 pt-8'>
                     <div className="w-full ">
                         <div className=' w-full pt-5'>
                             <div className="flex_b flex-col  gap-8 w-[90%] sm:w-[70%] md:w-[50%] mx-auto">
@@ -120,12 +122,12 @@ const Contect = ({className, icon, text, onclick, type}) => {
                             </div>
 
 
-                            <div className="flex_b flex-col  gap-16 w-[90%] sm:w-[70%] md:w-[50%] mx-auto mt-2">
-                                <img src={contect} alt="" className='w-full rounded-3xl' />
+                            <div className="flex_b flex-col  gap-16 w-[90%] sm:w-[70%] md:w-[50%] mx-auto mt-10 relative">
+                                <img src={contect} alt="" className='w-full h-full  rounded-3xl' />
 
                             </div>
                         </div>
-                        <nav className=' w-[100%] bg-[#3f3f3f2d] left-0 right-0'>
+                        <nav className=' w-[100%] bgf flex items-center justify-center mx-auto'>
                             <div className=" flex_b items-center py-1 pt-2 widh ">
                                 <div className=' '>
                                     <div className=' flex_C'>
@@ -135,8 +137,8 @@ const Contect = ({className, icon, text, onclick, type}) => {
                                     </div>
 
                                 </div>
-                                    <div className=' text-[12px] text-end'>
-                                        <p className=' flex items-center gap-2'> <b className=' text-[20px]'>©</b> Copyright 2024 By M Elia</p>
+                                    <div className='flex items-center justify-center gap-2 font-semibold text-[16px] text-end'>
+                                       < FaRegCopyright/>                                          Copyright 2024 By M Elia
                                     </div>
 
 

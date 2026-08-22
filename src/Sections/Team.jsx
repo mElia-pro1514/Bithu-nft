@@ -6,55 +6,56 @@ import mem from '../assets/img/members/pro3.jpeg'
 import mem1 from '../assets/img/members/pro4.jpeg'
 import mem2 from '../assets/img/members/pro5.jpeg'
 import { Link } from 'react-router-dom'
+import { FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa'
 
 
 const Team = () => {
     const team_mempers = [
         {
             id: 1,
-            img: "🤵",
+            img: manager,
             name: "Muhammad Amir",
             degniaton: "CEO"
         },
         {
             id: 2,
-            img: "👨‍⚕️",
+            img: ceo,
             name: "Ali Kazim",
             degniaton: "Co-Founder"
         },
         {
             id: 3,
-            img: "👨‍🎤",
+            img: mem,
             name: "Hussain Abbas",
             degniaton: "Web Developer"
         },
         {
             id: 4,
-            img: "🤵",
+            img: mem1,
             name: "Asim Ali",
             degniaton: "Web Developer"
         },
         {
             id: 5,
-            img: "👩‍💼",
+            img: mem2,
             name: "Raza Khan",
             degniaton: "Web Developer"
         },
         {
             id: 6,
-            img: "👩‍🔬",
+            img: manager,
             name: "Amir Ali",
             degniaton: "Web Developer"
         },
         {
             id: 7,
-            img: "👨‍💼",
+            img: ceo,
             name: "Amir Ali",
             degniaton: "Web Developer"
         },
         {
             id: 8,
-            img: "🙎🏾‍♀️",
+            img: mem,
             name: "Amir Ali",
             degniaton: "Web Developer"
         },
@@ -63,38 +64,46 @@ const Team = () => {
         <>
             <section id='team' className='w-full'>
                 <main className='w-full'>
-                    <div className="w-full bg-gray-900 py-8 sm:py-12 md:py-16 lg:py-20 ">
-                        <div className=' flex_b items-start w-[95%] sm:w-[90%] md:w-[90%] lg:w-[70%] flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-14  mx-auto  '>
+                    <div className="w-full bg-gray-900 py-12 sm:py-16 md:py-20 lg:py-24 ">
+                        <div className='flex_b items-start w-[92%] max-w-[1360px] flex-col gap-8 sm:gap-10 md:gap-12 mx-auto'>
                             <div>
-                                <div className='  text-[12px] sm:text-[14px] md:text-[16px] text-[#4ddb9e]'>
+                                <div className='  text-[12px] sm:text-[14px] md:text-[19px] text-[#4ddb9e]'>
                                     <b>TEAM MEMBERS</b>
                                 </div>
                                 <div className='head hover:text-white font-bold text-[1.1rem] sm:text-[1.3rem] md:text-[1.5rem] lg:text-[2rem]'>
                                     <h2>MEET THE CREW</h2>
                                 </div>
                             </div>
-                            <div className=' flex items-center justify-center mx-auto w-full'>
-                                <div className=' grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 w-[100%] '>
+                            <div className='flex items-center justify-center mx-auto w-full'>
+                                <div className='grid w-full grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-7'>
                                     {team_mempers.map((items) => {
                                         return (
-                                            <Link className=" rounded mb-1 sm:mb-2  bg-[#3f3f3f2d] hover:shadow-gray-700 h-auto min-h-[14vh] sm:min-h-[16vh] md:min-h-[18vh] cursor-pointer shadow-md flex justify-center items-center flex-col py-2 sm:py-3 md:py-4 px-2 sm:px-4 md:px-6 text-center transition-all duration-300 hover:scale-105" key={items.id} to={'/contectwithmembers'}>
-                                                <div className=' flex items-center justify-center w-full flex-1'>
-
-                                                    <b className=' w-[100%] text-[4em] sm:text-[5em] xl:text-[5em]'>{items.img}</b>
-
-                                                </div>
-                                                <div className='pt-1 sm:pt-2 md:pt-3'>
-                                                    <div className='  text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px] font-bold '>
-                                                        {items.name}
+                                            <div className="group relative flex aspect-square min-h-[270px] flex-col items-center justify-between bg-[#172328] px-4 pb-8 pt-5 text-center shadow-md transition-all duration-300 hover:bg-[#1d2c32] hover:shadow-gray-950/60 sm:min-h-0 sm:pb-9 sm:pt-7" key={items.id}>
+                                                <Link className='flex h-full w-full flex-col items-center justify-between' to={'/contectwithmembers'}>
+                                                    <div className='flex h-[62%] w-full items-center justify-center overflow-hidden'>
+                                                        <img src={items.img} className='h-full w-full object-contain transition-transform duration-500 group-hover:scale-105' alt={`${items.name} profile`} />
                                                     </div>
-                                                    <div className=' text-[#757575b9] font-medium text-[8px] sm:text-[10px] md:text-[11px] lg:text-[12px]'>
-                                                        {items.degniaton}
+                                                    <div className='pt-4 sm:pt-5'>
+                                                        <div className='text-sm font-bold text-white sm:text-base lg:text-lg'>
+                                                            {items.name}
+                                                        </div>
+                                                        <div className='mt-1 text-xs font-medium text-gray-300 sm:text-sm'>
+                                                            {items.degniaton}
+                                                        </div>
                                                     </div>
+                                                </Link>
+                                                <div className='absolute bottom-0 left-1/2 flex -translate-x-1/2 translate-y-1/2 gap-6 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100'>
+                                                    <a href='https://www.linkedin.com' target='_blank' rel='noreferrer' aria-label={`${items.name} on LinkedIn`} className='flex h-8 w-10 items-center justify-center bg-[#071116] text-white transition hover:bg-[#4ddb9e] hover:text-black'>
+                                                        <FaLinkedinIn />
+                                                    </a>
+                                                    <a href='https://twitter.com' target='_blank' rel='noreferrer' aria-label={`${items.name} on Twitter`} className='flex h-8 w-10 items-center justify-center bg-[#071116] text-white transition hover:bg-[#4ddb9e] hover:text-black'>
+                                                        <FaTwitter />
+                                                    </a>
+                                                    <a href='https://www.instagram.com' target='_blank' rel='noreferrer' aria-label={`${items.name} on Instagram`} className='flex h-8 w-10 items-center justify-center bg-[#071116] text-white transition hover:bg-[#4ddb9e] hover:text-black'>
+                                                        <FaInstagram />
+                                                    </a>
                                                 </div>
-                                                <div>
-                                                    
-                                                </div>
-                                            </Link>
+                                            </div>
 
                                         )
                                     })

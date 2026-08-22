@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Btn from './Btn'
 import { FaDiscord } from "react-icons/fa6";
@@ -10,6 +10,9 @@ import Connect from '../Sections/Connect';
 
 
 const Navbar = ({ back }) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [navbarHeight, setNavbarHeight] = useState(0);
+  const headerRef = useRef(null);
   let navlinks = [
     {
       id: 0,
@@ -58,10 +61,30 @@ const Navbar = ({ back }) => {
     setconnecttoggle(!connecttoggle)
   }
 
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 12);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const updateNavbarHeight = () => {
+      if (headerRef.current) setNavbarHeight(headerRef.current.offsetHeight);
+    };
+
+    updateNavbarHeight();
+    window.addEventListener('resize', updateNavbarHeight);
+    return () => window.removeEventListener('resize', updateNavbarHeight);
+  }, []);
+
   return (
     <>
-      <section>
-        <header className={`${back}`}>
+      <div className='relative z-40'>
+        {isScrolled && <div aria-hidden='true' style={{ height: navbarHeight }} />}
+        <section className={`${isScrolled ? 'fixed inset-x-0 top-0' : 'relative'}`}>
+        <header ref={headerRef} className={`${back || ''} relative ${isScrolled ? 'border-b border-white/15 !bg-black/45 shadow-lg shadow-black/20 backdrop-blur-lg' : 'border-b border-transparent !bg-transparent backdrop-blur-0'} transition-[background-color,backdrop-filter,box-shadow,border-color] duration-500 ease-out`}>
           {
             connecttoggle ?
               <Connect connect_control={connect_control} />
@@ -71,15 +94,15 @@ const Navbar = ({ back }) => {
               </div>
           }
           <nav className={`w-[100%]`}>
-            <div className=" flex_b  py-3 pt-6 widh">
+            <div className="mx-auto flex w-[calc(100%-2rem)] max-w-[1360px] items-center justify-between py-3 pt-5 sm:w-[90%] sm:py-4 lg:w-[88%]">
               <div className=' flex_b items-center  md:w-[65%]'>
                 <div className=' flex_C'>
-                  <span className='flex  items-center gap-2 text-[1.3rem] hover:text-[#4ddb9e] sm:text-[2rem] lg:text-[2.2rem] px-1 font-bold '>
+                  <span className='flex items-center gap-2 px-1 text-[1.3rem] font-semibold hover:text-[#4ddb9e] sm:text-[2rem] lg:text-[2.2rem] '>
                     <img src={logo} className='h-[20px] sm:h-fit' alt="" />{logo_link.map((items) => {
                       return (
                         <React.Fragment key={items.id}>
                           <span>
-                            <Link to={items.linkto}>{items.tag}</Link>
+                            <Link to={items.linkto}></Link>
                           </span>
                         </React.Fragment>)
                     })
@@ -87,7 +110,7 @@ const Navbar = ({ back }) => {
                 </div>
                 <div className='hidden
                  md:block'>
-                  <ul className=' flex flex-wrap font-semibold text-xs sm:text-sm items-center'>
+                  <ul className=' flex flex-wrap font-semibold text-xs sm:text-[16px] items-center'>
                     {
                       navlinks.map((items) => {
                         return (
@@ -101,8 +124,8 @@ const Navbar = ({ back }) => {
                 </div>
 
               </div>
-              <div className=' flex_c gap-5'>
-                <div className='flex gap-3'>
+              <div className='flex items-center gap-2 sm:gap-5'>
+                <div className='flex gap-1 sm:gap-3'>
 
                   <div>
                     <Btn text={"JOIN"} className={"btn_gray flex_c"} icon={<FaDiscord />} onclick={login_togglehanddle} />
@@ -111,24 +134,23 @@ const Navbar = ({ back }) => {
                     <Btn text={"CONNECT"} className={"btn_sky  flex_c"} icon={<IoIosFolderOpen />} onclick={connect_control} /></div>
                 </div>
 
-                <div className=' block md:hidden'>
+                <div className='block md:hidden'>
                   {toggle ?
 
-                    <div onClick={togglehanddle}>
+                    <button type='button' aria-label='Open navigation menu' aria-expanded='false' className='flex p-1 text-2xl' onClick={togglehanddle}>
                       <span className=' font-bold text-2xl'><IoIosMenu /></span>
-                    </div>
+                    </button>
                     :
 
-                    <div className=''>
-                      <ul className=' flex  flex-col absolute top-0 py-9 left-0  text-center w-full  font-semibold text-sm'>
+                    <div className='absolute left-0 top-full w-full border-t border-white/10 bg-black/75 px-4 py-3 shadow-lg backdrop-blur-lg'>
+                      <div className='flex justify-end'>
+                        <button type='button' aria-label='Close navigation menu' className='p-1 text-2xl leading-none text-gray-300 transition hover:text-[#4ddb9e]' onClick={togglehanddle}>×</button>
+                      </div>
+                      <ul className='flex flex-col text-center font-semibold text-sm'>
                         {
                           navlinks.map((items) => {
                             return (
-                              <>
-
-                                <Link key={items.id} to={items.LinkTo} className='py-3 sm:py-0 px-2 mx-1 hover:text-[#4ddb9e]' onClick={togglehanddle} >{items.tag}</Link>
-
-                              </>
+                              <Link key={items.id} to={items.LinkTo} className='border-b border-white/5 px-2 py-3 hover:text-[#4ddb9e]' onClick={togglehanddle} >{items.tag}</Link>
                             )
                           })
                         }
@@ -150,7 +172,8 @@ const Navbar = ({ back }) => {
             }
           </div>
         </header>
-      </section>
+        </section>
+      </div>
 
     </>
   )

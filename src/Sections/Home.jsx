@@ -7,30 +7,35 @@ import Nft_2 from '../assets/img/NFT_img/nft_2.jpeg'
 import Nft_3 from '../assets/img/NFT_img/nft_3.jpeg'
 import Nft_4 from '../assets/img/NFT_img/nft_4.jpeg'
 import Nft_5 from '../assets/img/NFT_img/nft_5.png'
+import how from '../assets/img/box_img/how.svg'
+import rot from '../assets/img/rot.png'
+
+import { TfiArrowTopRight } from 'react-icons/tfi'
 
 import Mintnow from '../Components/Mintnow';
 
+const nft_info = [
+  {
+    total: 5555,
+    name: 'Total Items'
+  },
+  {
+    total: 896,
+    name: 'Total Owners'
+  },
+  {
+    total: 0.55,
+    name: 'Floor Price [ETH]'
+  },
+  {
+    total: 25.5,
+    suffix: 'K',
+    name: 'Volume Traded [ETH]'
+  },
+];
 
 const Home = () => {
-  let sm_text = "text-[12px] md:text-[16px]"
-  const nft_info = [
-    {
-      total: 5559,
-      name: "Total Items"
-    },
-    {
-      total: 89,
-      name: "Total Owners"
-    },
-    {
-      total: 0.53,
-      name: "Friver Price [CTI-4]"
-    },
-    {
-      total: "22.5k",
-      name: "Volume Tripped"
-    },
-  ]
+  let sm_text = "text-[14px] md:text-[20px]"
 
   const nft_img = [
     {
@@ -71,19 +76,59 @@ const Home = () => {
     },
     {
       id: 2,
-      step: "Sellect Your Quantity"
+      step: "Select Your Quantity"
     },
     {
       id: 3,
-      step: "Confrim Your Tranaction"
+      step: "Confirm the Transaction"
     },
     {
       id: 4,
-      step: "Receive Your Best NFTs"
+      step: "Receive Your NFTs"
     },
   ]
   const scrollRef = useRef(null);
   const [translateX, setTranslateX] = useState(0);
+  const statsRef = useRef(null);
+  const [statsVisible, setStatsVisible] = useState(false);
+  const [animatedStats, setAnimatedStats] = useState(nft_info.map(() => 0));
+
+  useEffect(() => {
+    const statsElement = statsRef.current;
+    if (!statsElement) return undefined;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setStatsVisible(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.35 });
+
+    observer.observe(statsElement);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!statsVisible) return undefined;
+
+    const duration = 1400;
+    const startTime = performance.now();
+    const animationFrame = (currentTime) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      setAnimatedStats(nft_info.map((item) => {
+        if (typeof item.total !== 'number') return progress === 1 ? item.total : '0';
+        return item.total % 1 === 0
+          ? Math.floor(item.total * easedProgress).toLocaleString()
+          : `${(item.total * easedProgress).toFixed(2)}${item.suffix || ''}`;
+      }));
+
+      if (progress < 1) requestAnimationFrame(animationFrame);
+    };
+
+    const frame = requestAnimationFrame(animationFrame);
+    return () => cancelAnimationFrame(frame);
+  }, [statsVisible]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -133,25 +178,25 @@ const Home = () => {
            
 
         <div>
-          <div className="flex_b flex-col-reverse md:flex-row py-3 pt-6 widh mt-2  md:mt-16">
-            <div className=' flex flex-col gap-3 sm:gap-[1rem] md:gap-5'>
-              <div className='head hidden md:block hover:text-white text-[1.2rem] md:text-[1.8rem] lg:text-[2.1rem]'>
+          <div className="flex widh flex-col gap-12 py-10 pt-8 md:flex-row md:items-center md:justify-between md:gap-10 md:py-16 md:pt-20">
+            <div className='flex w-full flex-col gap-3 sm:gap-[1rem] md:w-[48%] md:gap-5'>
+              <div className='head hidden text-[2rem] hover:text-white md:block md:text-[2.5rem] lg:text-[3.1rem]'>
                 <h2>CRAZY META 🎯</h2>
                 <h2>NFT COLLECTIONS </h2>
               </div>
-              <div className='pt-3 md:py-4 flex gap-4 text-[1rem] sm:text-[1.1rem] lg:text-[1.8rem] px-1 font-bold '>
-                <span className='flex gap-2'>32<span>/</span>4044</span>
+              <div className='flex gap-4 px-1 pt-3 text-[1rem] font-bold sm:text-[1.1rem] md:py-4 lg:text-[1.8rem]'>
+                <span className='flex gap-2'>1705<span>/</span>5555</span>
                 <span>MINTED</span>
 
               </div>
 
               <div className='flex'>
-                <div className=' flex_c gap-4 sm:gap-7'>
+                <div className='flex flex-wrap items-center gap-3 sm:gap-7'>
                   <Btns text={"MINT NOW"} className={"btn_sky rounded-none text-[12px]  py-2 px-3  sm:px-4 sm:py-3 lg:px-6 bg-[#4ddb9e] hover:bg-transparent hover:text-white text-black  flex_c"} icon={""} onclick={mintcontrol} />
                   <Btns text={"WHITELIST NOW"} className={"btn_gray rounded-none text-[12px]  py-2 px-3 sm:px-4  sm:py-3 lg:px-8  flex_c"} icon={""} />
                 </div>
               </div>
-              <div className={`sm:pt-4 font-bold ${sm_text}`}>
+              <div className={`sm:pt-4 font-semibold ${sm_text}`}>
                 <div>
                   <p>MAX 2 NFTS PER WALLET .PRICE 0.09ETH + GAS</p>
                 </div>
@@ -163,33 +208,48 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className=''>
-              <div className='text-[1.2rem] sm:text-[2rem] font-bold pb-4 md:hidden text-white'>
+            <div className='w-full md:w-[46%]'>
+              <div className='pb-4 text-[1.2rem] font-bold text-white sm:text-[1.5rem] md:hidden'>
                 <h2>CRAZY META 🎯</h2>
-                 {/* <br /> */}
                 <h2>NFT COLLECTIONS 💯</h2>
               </div>
-              <div className=' bg-[#fffbfb14] backdrop-blur-lg py-5 flex items-center  justify-center w-full'>
-                <img src={img_home} alt="" className=' shadow-[#eeeeee8b]   sm:w-[80%] shadow-2xl
-                 md:w-[90%] w-[85%]' />
+              <div className='relative flex aspect-[0.9] items-center justify-center px-5 py-8 sm:px-12 sm:py-14 md:px-14'>
+                <img src={img_home} alt='Bitin NFT collectible' className='herobg h-full w-full object-contain drop-shadow-[0_18px_28px_rgba(0,0,0,0.35)]' />
+
+
+
+                <button type='button' aria-label='Mint is live' onClick={mintcontrol} className='absolute -left-2 -top-2 z-10 h-20 w-20 rounded-full bg-[#ffe000] text-black shadow-xl shadow-black/30 transition-transform hover:scale-105 sm:-left-7 sm:-top-7 sm:h-32 sm:w-32'>
+                  <svg viewBox='0 0 160 160' className='mint-badge-text absolute inset-0 h-full w-full' aria-hidden='true'>
+                    <defs>
+                      <path id='mintBadgePath' d='M 80,80 m -53,0 a 53,53 0 1,1 106,0 a 53,53 0 1,1 -106,0' />
+                    </defs>
+                    <text className='fill-black text-[16px] uppercase tracking-[1px]'>
+                      <textPath href='#mintBadgePath' startOffset='0%'>• MINT IS LIVE • MINT IS LIVE • MINT IS LIVE  </textPath>
+                    </text>
+                  </svg>
+                  <span className='absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center text-3xl' aria-hidden='true'>
+                    <TfiArrowTopRight />
+                  </span>
+                </button>
+                
               </div>
             </div>
           </div>
         </div>
-        
-        <div className=' w-full mt-10'>
+        {/*number section*/}
+        <div className='w-full mt-10'>
         
           <div className=' flex flex-col gap-10 '>
-            <div>
-              <div className=' w-full bg-gray-900 py-10 '>
-                <div className=' w-[90%] sm:w-[65%] flex items-center justify-between mx-auto'>
+            <div ref={statsRef}>
+              <div className='w-full border-y border-white/[0.04] bg-[#0b1821]/90 py-8 sm:py-10'>
+                <div className='mx-auto grid w-[90%] max-w-6xl grid-cols-2 gap-y-8 sm:w-[88%] md:grid-cols-4 md:gap-6'>
                   {nft_info.map((items, index) => {
                     return (
-                      <div className='flex items-center justify-center flex-col' key={index}>
-                        <div className="  text-[14px] sm:text-[1.5rem] lg:text-[1.8rem] px-2 font-bold">
-                          {items.total}
+                      <div className='flex min-w-0 flex-col items-center justify-center text-center md:items-start md:text-left' key={index}>
+                        <div className="min-h-10 px-1 text-3xl font-black leading-none tracking-tight text-white sm:text-4xl lg:text-[2.25rem]">
+                          {animatedStats[index]}
                         </div>
-                        <div className='text-[10px] font-semibold'>
+                        <div className='mt-3 px-1 text-[11px] font-semibold text-gray-300 sm:text-[18px]'>
                           {items.name}
                         </div>
                       </div>
@@ -215,20 +275,25 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className=' w-full'>
-              <div className='w-[80%] flex flex-col gap-3  justify-between mx-auto'>
-                <div className=' text-[14px] md:text-[16px] font-bold text-[#4ddb9e]'>EASY STEPS</div>
-                <div className='head hover:text-white font-bold lg:text-[2rem]'>
-                  <h1>📎HOW TO MINT</h1>
+            <div className='w-full pb-10'>
+              <div className='mx-auto flex w-[88%] max-w-6xl flex-col gap-5 md:w-[80%]'>
+                <div className='flex items-center gap-3 md:text-[4rem] font-bold text-[#4ddb9e] md:text-base'>
+                  EASY STEPS <span className='text-gray-600' aria-hidden='true'>
+                    <img src={how} alt="" />
+                  </span>
                 </div>
-                <div className=' grid grid-rows-2 grid-cols-2 md:grid-rows-1  md:grid-cols-4'>
-                  {mint_steps.map((items) => {
+                <div className='head hover:text-white font-bold lg:text-[2rem]'>
+                  <h1>HOW TO MINT</h1>
+                </div>
+                <div className='grid grid-cols-1 gap-7 sm:grid-cols-2 md:grid-cols-4 md:gap-5'>
+                  {mint_steps.map((items, index) => {
+                    const numberColors = ['#00d084', '#4659d9', '#d5c900', '#e0004f'];
                     return (
-                      <div key={items.id} className='  text-center sm:text-start flex md:gap-1 items-center w-[90%] text-[16px] font-bold flex-col md:flex-row'>
-                        <span className=' text-3xl md:text-6xl text-[#4ddb9e]'>
+                      <div key={items.id} className='flex w-full items-center gap-5 text-left text-  font-[900] sm:gap-6 md:items-start md:gap-3 lg:text-lg'>
+                        <span className='min-w-[3.5rem] text-7xl font-[900] leading-[0.9] text-transparent sm:text-8xl' style={{ WebkitTextStroke: `1px ${numberColors[index]}` }}>
                           {items.id}
                         </span>
-                        <span className='md:px-0  lg:px-5 xl:px-7'>
+                        <span className='max-w-[10rem] pt-3 text-xl font-[900] leading-relaxed text-white'>
                           {items.step}
                         </span>
                       </div>

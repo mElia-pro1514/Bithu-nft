@@ -1,9 +1,9 @@
 import  { useState } from 'react';
 import AboutBox from '../Components/AboutBox';
 import img_about from '../assets/img/about_page_img.png'
-import about from '../assets/img/box_img/box1.jpeg'
-import about2 from '../assets/img/box_img/box3.jpeg'
-import about3 from '../assets/img/box_img/box2.jpeg'
+import about from '../assets/img/box_img/box2.svg'
+import about2 from '../assets/img/box_img/box1.svg'
+import about3 from '../assets/img/box_img/box3.svg'
 import { IoIosCheckmark } from "react-icons/io"
 // import { v4 as uuid } from 'uuid';
 
@@ -28,21 +28,21 @@ const About = () => {
       id: 1,
       img: about2,
       head: "Gamming NFTs",
-      para: "Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure.",
+      para: "Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure. Hampden-Sydney College in Virginia, looked up one of the more obscure.",
       para_more:"  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed rem nobis, libero veniam tempore quisquam provident vel! Sunt animi dolor eos quidem porro ab quo accusamus architecto nulla veniam quia illum ex obcaecati perspiciatis, incidunt, nobis veritatis culpa hic libero necessitatibus beatae. Nulla quod labore maiores ea eveniet atque nesciunt nobis deserunt numquam accusamus molestiae laudantium, obcaecati sapiente nemo ullam molestias aliquid nihil esse exercitationem tenetur eos cum sequi! Autem unde consequatur alias! At eos similique quo asperiores earum necessitatibus commodi recusandae quas illum soluta quis repudiandae, ad aut sapiente voluptatem veritatis labore eveniet voluptate possietur sapiente omnis eius aut porro quibusdam esse!"
     },
     {
       id: 2,
       img: about,
       head: "Play to Earn",
-      para: "Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original.",
+      para: "Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original.Hampden-Sydney College in Virginia, looked up one of the more obscure.",
       para_more:"  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed rem nobis, libero veniam tempore quisquam provident vel! Sunt animi dolor eos quidem porro ab quo accusamus architecto nulla veniam quia illum ex obcaecati perspiciatis, incidunt, nobis veritatis culpa hic libero necessitatibus beatae. Nulla quod labore maiores ea eveniet atque nesciunt nobis deserunt numquam accusamus molestiae laudantium, obcaecati sapiente nemo ullam molestias aliquid nihil esse exercitationem tenetur eos cum sequi! Autem unde consequatur alias! At eos similique quo asperiores earum necessitatibus commodi recusandae quas illum soluta quis repudiandae, ad aut sapiente voluptatem veritatis labore eveniet voluptate possietur sapiente omnis eius aut porro quibusdam esse!"
     },
     {
       id: 3,
       img: about3,
       head: "Metaverse Realty ",
-      para: "Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure.",
+      para: "Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure.Hampden-Sydney College in Virginia, looked up one of the more obscure.",
       para_more:"  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed rem nobis, libero veniam tempore quisquam provident vel! Sunt animi dolor eos quidem porro ab quo accusamus architecto nulla veniam quia illum ex obcaecati perspiciatis, incidunt, nobis veritatis culpa hic libero necessitatibus beatae. Nulla quod labore maiores ea eveniet atque nesciunt nobis deserunt numquam accusamus molestiae laudantium, obcaecati sapiente nemo ullam molestias aliquid nihil esse exercitationem tenetur eos cum sequi! Autem unde consequatur alias! At eos similique quo asperiores earum necessitatibus commodi recusandae quas illum soluta quis repudiandae, ad aut sapiente voluptatem veritatis labore eveniet voluptate possietur sapiente omnis eius aut porro quibusdam esse!"
     },
   ];
@@ -70,7 +70,7 @@ const About = () => {
                     <div className='md:hidden text-[14px] sm:text-[16px] mb-4 sm:mb-9 font-bold text-[#4ddb9e]'>
                       <b>The Story </b>
                     </div>
-                    <img src={img_about} className='hover:scale-110 w-full h-full object-cover' alt="ABOUT US" />
+                    <img src={img_about} className=' w-full h-full object-cover' alt="ABOUT US" />
                   </div>
                   <div className='basis-[55%] w-[90%] sm:w-[80%] md:w-full'>
                     {aboutinfo.map((items) => (
@@ -86,10 +86,10 @@ const About = () => {
                         <div className='head hover:text-white font-bold lg:text-[2rem]'>
                           <h2>{items.head} </h2>
                         </div>
-                        <div className='text-[14px] md:text-[16px] font-semibold'>
+                        <div className='about-description text-[14px] md:text-[16px] font-semibold'>
                           <p> {items.para1} </p>
                         </div>
-                        <div className='text-[14px] md:text-[16px] font-semibold'>
+                        <div className='about-description text-[14px] md:text-[16px] font-semibold'>
                           <p> {items.para2} </p>
                         </div>
                       </div>
@@ -97,22 +97,22 @@ const About = () => {
                   </div>
                 </div>
               </div>
-              <div>
-                <div className='flex items-center flex-col sm:grid grid-cols-1 sm:grid-cols-2 gap-2 md:grid-cols-3 w-[100%] text-center'>
+              <div className='w-full'>
+                <div className='grid w-full grid-cols-1 gap-4 text-center sm:grid-cols-2 md:grid-cols-3 md:gap-6'>
                   {about_box.map((items) => (
-                     <div    className=" rounded-md w-[93%]  h-[35vh] lg:h-[30vh] sm:w-[100%] hover:cursor-pointer shadow-gray-600 flex flex-col gap-2 text-center md:text-start bg-gray-900 py-6 px-3 md:px-5 hover:bg-gray-950 border-gray-900 border-[2px]"
+                     <div className="group flex min-h-[250px] w-full cursor-pointer flex-col gap-4 rounded-md border-2 border-gray-900 bg-gray-900 px-5 py-7 text-center shadow-md shadow-black/10 transition-all duration-300 hover:bg-gray-800 hover:shadow-gray-950/60 md:min-h-[285px] md:text-left hover:scale-105"
                       onClick={() => handleClick(items.id)}
                       key={items.id}
                     >
-                      <div className="flex justify-center items-center flex-col gap-6 md:flex-row w-full">
-                        <div className="rounded-full w-[20%]">
-                          <img src={items.img} className="w-full rounded-full" alt="" />
+                      <div className="flex w-full flex-col items-center justify-center gap-4 md:flex-row md:justify-start">
+                        <div className="h-16 w-16 shrink-0 rounded-full p-2 transition-transform duration-300 group-hover:scale-105">
+                          <img src={items.img} className="h-full w-full rounded-full object-contain" alt={`${items.head} icon`} />
                         </div>
-                        <div className="w-[80%] md:w-[80%] text-[20px] font-bold">
+                        <div className="w-full text-lg font-bold md:text-xl">
                           {items.head}
                         </div>
                       </div>
-                      <div className="font-normal text-[14px] md:text-[18px] text-center md:text-start pt-7">
+                      <div className="pt-1 text-sm font-normal leading-7 text-gray-300 md:text-base">
                         {items.para}
                       </div>
                     </div>
